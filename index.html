@@ -22,17 +22,19 @@
     <div class="container">
       <nav>
         <div>
-          <img src="logos/logo-paynow-icon-0094ff.svg" class="brand" loading="lazy" alt="PayNow logo" />
+          <a href="#hero">
+            <img src="logos/logo-paynow.svg" class="brand" loading="lazy" alt="PayNow logo" />
+          </a>
         </div>
         <button class="menu-btn" id="menuBtn">☰</button>
         <div class="nav-links" id="navLinks">
-          <a href="#features">Features</a>
           <a href="#benefits">Benefits</a>
+          <a href="#features">Features</a>
           <a href="#compliance">Compliance</a>
           <a href="#contact">Contact</a>
         </div>
         <div class="nav-actions">
-          <a href="#contact" class="btn primary nav">Talk to sales</a>
+          <a href="#contact" class="btn primary nav">Contact sales</a>
         </div>
       </nav>
     </div>
@@ -59,14 +61,16 @@
   </script>
 
   <!-- Hero -->
-  <section class="hero">
+  <section id="hero" class="hero">
     <div class="container grid grid-2" style="align-items:center; gap:2rem;">
       <div class="hero-cta">
-        <h1>Retail solutions for cannabis merchants</h1>
-        <p>Process more transactions with a <strong style="color:var(--emerald)">compliant debit solution</strong> built
-          for the emerging cannabis industry.</p>
+        <h1>Upgrade your dispensary - accept debit payments</h1>
+        <div class="hero-p" style="margin-bottom: 32px;">
+          <p><strong class="gradient-text">Compliant card transactions are here</strong></p>
+        </div>
         <div class="actions">
-          <a class="btn cta" href="#contact">Get started for free</a>
+          <a class="btn cta" href="#contact">Contact sales</a>
+          <a class="btn ghost" href="#features">Learn more</a>
         </div>
         <div class="feature-list">
           <div class="chip"><img src="icons/icon-check-circle-00b123.svg" class="checkmark" loading="lazy"
@@ -78,7 +82,7 @@
           <div class="chip"><img src="icons/icon-check-circle-00b123.svg" class="checkmark" loading="lazy"
               alt="Green Checkmark Icon" /> Tipping support</div>
           <div class="chip"><img src="icons/icon-check-circle-00b123.svg" class="checkmark" loading="lazy"
-              alt="Green Checkmark Icon" /> Built‑in QR scanner</div>
+              alt="Green Checkmark Icon" /> QR scanner</div>
         </div>
       </div>
       <div class="device-wrap">
@@ -89,14 +93,14 @@
   </section>
 
   <!-- Partners -->
-  <section id="partners">
-    <div class="container grid grid-1" style="align-items:center; gap:2rem;">
-      <div class="partners">
-        <img src="logos/logo-fiserv.svg" class="partner-logo" loading="lazy" alt="Fiserv logo" />
-        <img src="logos/logo-accel-standard-registered.svg" class="partner-logo" loading="lazy" alt="Accel logo" />
-        <img src="logos/logo-pax.png" class="partner-logo" loading="lazy" alt="PAX logo" />
-        <img src="logos/logo-rogue-credit-union.svg" class="partner-logo" loading="lazy" alt="Rogue Credit Union logo" />
-        <img src="logos/logo-corduro-2025.svg" class="partner-logo" loading="lazy" alt="Corduro logo" />
+  <section class="partners">
+    <div class="container">
+      <div class="logo-wrapper">
+        <img src="logos/logo-accel-standard-registered.svg" class="logo" alt="Accel Logo">
+        <img src="logos/logo-fiserv.svg" class="logo" alt="Fiserv Logo">
+        <img src="logos/logo-peak-credit-union.webp" class="logo" alt="Peak Credit Union Logo">
+        <img src="logos/logo-rogue-credit-union.svg" class="logo" alt="Rogue Credit Union Logo">
+        <img src="logos/logo-willamette-valley-bank.svg" class="logo" alt="Willamette Valley Bank Logo">
       </div>
     </div>
   </section>
@@ -104,19 +108,22 @@
   <!-- Benefits -->
   <section id="benefits">
     <div class="container grid grid-3" style="gap:1.25rem;">
-      <div class="card">
-        <strong>Free terminal to get started</strong>
-        <p style="color:var(--muted); margin-top:.4rem;">Start accepting compliant debit with no upfront hardware cost.
+      <div class="card" style="background:#f8fafc;">
+        <h2 style="color: var(--blue);">No up front cost</h2>
+        <strong>Get a fee terminal when you sign up</strong>
+        <p style="color:var(--muted); margin-top:.4rem;">We'll set you up with a free terminal and waive all fees for the first 90 days.
         </p>
       </div>
-      <div class="card">
-        <strong>Streamline cash handling</strong>
-        <p style="color:var(--muted); margin-top:.4rem;">Reduce cash exposure, reconcile faster, and simplify store ops.
+      <div class="card" style="background:#f8fafc;">
+        <h2 style="color: var(--blue);">More sales</h2>
+        <strong>Grow your business</strong>
+        <p style="color:var(--muted); margin-top:.4rem;">Reach a larger market by accepting Accel® debit cards at checkout.
         </p>
       </div>
-      <div class="card">
-        <strong>Modernize your retail</strong>
-        <p style="color:var(--muted); margin-top:.4rem;">Upgrade checkout with fast, familiar debit transactions.</p>
+      <div class="card" style="background:#f8fafc;">
+        <h2 style="color: var(--blue);">Less risk</h2>
+        <strong>Streamline your operations</strong>
+        <p style="color:var(--muted); margin-top:.4rem;">Spend less time handling cash and more time running your business.</p>
       </div>
     </div>
   </section>
@@ -162,9 +169,7 @@
       <div class="compliance">
         <div>
           <h3 class="section-title" style="margin-bottom:.25rem;">In partnership with Fiserv® | Accel®</h3>
-          <p style="color:var(--muted);">Accel is the debit payment network designed for the cannabis industry. Our
-            program aligns with network rules to help you accept more sales confidently.</p>
-          <p class="note">* Business debit transactions are limited to non‑cannabis purchases.</p>
+          <p style="color:var(--muted);">Accel is the only debit payment network designed for the cannabis industry.</p>
         </div>
         <div class="card" style="background:#f8fafc;">
           <ul style="margin:0; padding-left:1.1rem; color:#334155;">
@@ -173,11 +178,12 @@
             <li>Simple installation and remote onboarding</li>
           </ul>
         </div>
+        <p class="note">* Business debit transactions are limited to non‑cannabis purchases.</p>
       </div>
     </div>
   </section>
 
-  <!-- CTA strip -->
+  <!-- CTA strip
   <section class="strip">
     <div class="container"
       style="display:flex; gap:1rem; align-items:center; justify-content:space-between; flex-wrap:wrap;">
@@ -189,71 +195,23 @@
         style="background: rgba(255,255,255,.12); color:white; border-color: rgba(255,255,255,.25);">Talk to sales →</a>
     </div>
   </section>
+-->
 
   <!-- Contact -->
-  <section id="contact">
-    <div class="container grid grid-2" style="align-items:flex-start; gap:1.5rem;">
+  <section id="contact" style="background: var(--blue); color: white; border-block:1px solid var(--line);">
+    <div class="container grid grid-1" style="align-items:flex-start; gap:1.5rem;">
       <div>
         <h3 class="section-title">Contact us</h3>
-        <p class="hero-p">We’ll reach out the same business day.</p>
-        <div class="card" style="margin-top:1rem;">
-          <aside class="card" style="background:#f8fafc; margin-bottom: 12px;">
-        <strong>Email us:</strong>
-        <a href= "mailto:sales@corduro.com" class="text-link">sales@corduro.com</a>
-      </aside>
-      <aside class="card" style="background:#f8fafc; margin-bottom: 12px;">
-        <strong>Or call:</strong>
-        <a href= "tel:8882471886,4" class="text-link">(888) 247-1886 ext. 4</a>
-      </aside>
-      <aside class="card" style="background:#f8fafc;">
-        <strong>We'll answer questions about:</strong>
-        <ul style="margin: .5rem 0 0; padding-left:1.1rem; color:#334155;">
-          <li>Program overview and pricing</li>
-          <li>Timeline for install and activation</li>
-          <li>Answers to compliance questions</li>
-        </ul>
-      </aside>
-          <!--
-          <form id="contactForm">
-            <div class="row">
-              <div>
-                <label for="name">Full name</label>
-                <input id="name" name="name" required />
-              </div>
-              <div>
-                <label for="email">Work email</label>
-                <input id="email" name="email" type="email" required />
-              </div>
-            </div>
-            <div class="row" style="margin-top:1rem;">
-              <div>
-                <label for="company">Company / DBA</label>
-                <input id="company" name="company" />
-              </div>
-              <div>
-                <label for="locations"># of locations</label>
-                <input id="locations" name="locations" />
-              </div>
-            </div>
-            <div style="margin-top:1rem;">
-              <label for="phone">Phone</label>
-              <input id="phone" name="phone" />
-            </div>
-            <div style="margin-top:1rem;">
-              <label for="message">Message</label>
-              <textarea id="message" name="message" rows="5"
-                placeholder="Tell us what you’re using today and your timeline"></textarea>
-            </div>
-            <div style="margin-top:1rem;">
-              <button class="btn primary" type="submit">Request demo</button>
-            </div>
-          </form>
-          -->
-          <div id="success" class="card"
-            style="display:none; text-align:center; margin-top:1rem; background:#ecfeff; border-color:#a5f3fc;">
-            <strong>Thanks. We’ll be in touch shortly.</strong>
-            <div style="color:#0c4a6e;">You can also call sales at (___) ___‑____.</div>
-          </div>
+        <p class="subheading">We’ll reach out the same business day.</p>
+        <div style="margin-top:3rem;">
+          <aside class="card" style="background-color: rgba(255, 255, 255, 0.1); color: #fff; margin-bottom: 12px; border: none;">
+            <strong style="color: rgba(255, 255, 255, 0.8);">Email us:</strong>
+            <a href="mailto:sales@corduro.com" id="emailLink" class="text-link">sales@corduro.com</a>
+          </aside>
+          <aside class="card" style="background-color: rgba(255, 255, 255, 0.1); color: #fff; margin-bottom: 12px; border: none;">
+            <strong style="color: rgba(255, 255, 255, 0.8);">Or call:</strong>
+            <a href="tel:8882471886,4" class="text-link">(888) 247-1886 ext. 4</a>
+          </aside>
         </div>
       </div>
     </div>
@@ -261,36 +219,12 @@
 
   <!-- Footer -->
   <footer>
-    <div class="container"
-      style="display:flex; gap:1rem; align-items:center; justify-content:space-between; flex-wrap:wrap;">
-      <div>© 2025<span id="year"></span> PayNow • Corduro® • All rights reserved.</div>
-      <div style="display:flex; gap:1rem;">
-        <a href="#">Terms</a>
-        <a href="#">Privacy</a>
-        <a href="#contact">Contact</a>
-      </div>
+    <div class="container" style="display:flex; gap:1rem; align-items:center; justify-content:center; flex-wrap:wrap; text-align: center;">
+      <span> Copyright © 2025 PayNow • Powered by Corduro® • All rights reserved.</span>
+    </div>
     </div>
   </footer>
 
-  <!--
-  <script>
-    // Dumb little scripts you're allowed to have
-    const y = document.getElementById('year'); y.textContent = new Date().getFullYear();
-    const menuBtn = document.getElementById('menuBtn');
-    const panel = document.getElementById('mobilePanel');
-    menuBtn?.addEventListener('click', () => {
-      const hidden = panel.hasAttribute('hidden');
-      if (hidden) panel.removeAttribute('hidden'); else panel.setAttribute('hidden', '');
-      panel.style.display = hidden ? 'block' : 'none';
-    });
-    // Fake form submission success (replace with real action later)
-    document.getElementById('contactForm')?.addEventListener('submit', function (e) {
-      e.preventDefault();
-      document.getElementById('success').style.display = 'block';
-      this.reset();
-    });
-  </script>
-  -->
 </body>
 
 </html>
