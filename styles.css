@@ -239,7 +239,7 @@ a {
     background: var(--card);
     border: 1px solid var(--line);
     border-radius: var(--radius);
-    padding: 1.25rem;
+    padding: 1.25rem 2rem;
     box-shadow: none;
 }
 
