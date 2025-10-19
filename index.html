@@ -14,12 +14,15 @@
   <link rel="apple-touch-icon" sizes="180x180" href="favicon/apple-touch-icon.png" />
   <meta name="apple-mobile-web-app-title" content="PayNow" />
   <link rel="manifest" href="favicon/site.webmanifest" />
+  <script>
+    document.documentElement.classList.add('js');
+  </script>
 </head>
 
 <body>
   <!-- Header -->
-  <header>
-    <div class="container">
+  <header data-animate>
+    <div>
       <nav>
         <div>
           <a href="#hero">
@@ -28,7 +31,26 @@
         </div>
         <button class="menu-btn" id="menuBtn">☰</button>
         <div class="nav-links" id="navLinks">
-          <a href="#benefits">Benefits</a>
+          <div class="nav-item has-dropdown">
+            <button class="nav-link dropdown-trigger" type="button" aria-expanded="false" aria-controls="navDropdown"
+              data-dropdown-toggle>
+              Bank partners
+            </button>
+            <div class="dropdown-menu" id="navDropdown">
+              <div>
+                <a href="#compliance">Maine</a>
+                <a href="#features">Massachusetts</a>
+                <a href="#compliance">Minnesota</a>
+                <a href="#compliance">Montana</a>
+                <a href="#compliance">New York</a>
+                <a href="#compliance">Oklahoma</a>
+                <a href="#compliance">Oregon</a>
+                <a href="#compliance">Pennsylvania</a>
+                <a href="#compliance">Rhode Island</a>
+                <a href="#compliance">Washington</a>
+              </div>
+            </div>
+          </div>
           <a href="#features">Features</a>
           <a href="#compliance">Compliance</a>
           <a href="#contact">Contact</a>
@@ -45,9 +67,43 @@
   <script>
     const menuBtn = document.getElementById('menuBtn');
     const navLinks = document.getElementById('navLinks');
+    const headerEl = document.querySelector('header');
+
+    const setHeaderHeight = () => {
+      if (!headerEl) {
+        return;
+      }
+
+      const update = () => {
+        document.documentElement.style.setProperty('--header-height', `${headerEl.offsetHeight}px`);
+      };
+
+      if (window.requestAnimationFrame) {
+        window.requestAnimationFrame(update);
+      } else {
+        update();
+      }
+    };
+
+    setHeaderHeight();
+
+    window.addEventListener('resize', setHeaderHeight, { passive: true });
 
     menuBtn.addEventListener('click', () => {
-      navLinks.classList.toggle('active');
+      const isOpen = navLinks.classList.toggle('active');
+
+      if (!isOpen) {
+        const openDropdowns = navLinks.querySelectorAll('.has-dropdown.open');
+        openDropdowns.forEach((item) => {
+          item.classList.remove('open');
+          const trigger = item.querySelector('[data-dropdown-toggle]');
+          if (trigger) {
+            trigger.setAttribute('aria-expanded', 'false');
+          }
+        });
+      }
+
+      setHeaderHeight();
     });
 
     const links = navLinks.querySelectorAll('a');
@@ -56,15 +112,62 @@
         if (navLinks.classList.contains('active')) {
           navLinks.classList.remove('active');
         }
+        const openDropdowns = navLinks.querySelectorAll('.has-dropdown.open');
+        openDropdowns.forEach((item) => {
+          item.classList.remove('open');
+          const trigger = item.querySelector('[data-dropdown-toggle]');
+          if (trigger) {
+            trigger.setAttribute('aria-expanded', 'false');
+          }
+        });
       });
+      setHeaderHeight();
+    });
+
+    const dropdownTriggers = document.querySelectorAll('[data-dropdown-toggle]');
+
+    dropdownTriggers.forEach((trigger) => {
+      const parent = trigger.closest('.has-dropdown');
+
+      trigger.addEventListener('click', (event) => {
+        const isDesktop = window.matchMedia('(min-width: 871px)').matches;
+
+        if (isDesktop) {
+          return;
+        }
+
+        const isOpen = parent.classList.toggle('open');
+        trigger.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+        event.stopPropagation();
+        setHeaderHeight();
+      });
+    });
+
+    document.addEventListener('click', (event) => {
+      const isDesktop = window.matchMedia('(min-width: 871px)').matches;
+
+      if (isDesktop) {
+        return;
+      }
+
+      if (!navLinks.contains(event.target)) {
+        dropdownTriggers.forEach((trigger) => {
+          const parent = trigger.closest('.has-dropdown');
+          if (parent) {
+            parent.classList.remove('open');
+            trigger.setAttribute('aria-expanded', 'false');
+          }
+        });
+        setHeaderHeight();
+      }
     });
   </script>
 
   <!-- Hero -->
   <section id="hero" class="hero">
     <div class="container grid grid-2" style="align-items:center; gap:2rem;">
-      <div class="hero-cta">
-        <h1>Upgrade your dispensary - accept debit payments</h1>
+      <div class="hero-cta" data-animate>
+        <h1>Upgrade your dispensary with debit payments</h1>
         <div class="hero-p" style="margin-bottom: 32px;">
           <p><strong class="gradient-text">Compliant card transactions are here</strong></p>
         </div>
@@ -72,35 +175,18 @@
           <a class="btn cta" href="#contact">Contact sales</a>
           <a class="btn ghost" href="#benefits">Learn more</a>
         </div>
-        <div class="feature-list">
-          <div class="chip"><img src="icons/icon-check-circle-00b123.svg" class="checkmark" loading="lazy"
-              alt="Green Checkmark Icon" /> Membership support</div>
-          <div class="chip"><img src="icons/icon-check-circle-00b123.svg" class="checkmark" loading="lazy"
-              alt="Green Checkmark Icon" /> No rounding</div>
-          <div class="chip"><img src="icons/icon-check-circle-00b123.svg" class="checkmark" loading="lazy"
-              alt="Green Checkmark Icon" /> Accept debit cards</div>
-          <div class="chip"><img src="icons/icon-check-circle-00b123.svg" class="checkmark" loading="lazy"
-              alt="Green Checkmark Icon" /> Tipping support</div>
-          <div class="chip"><img src="icons/icon-check-circle-00b123.svg" class="checkmark" loading="lazy"
-              alt="Green Checkmark Icon" /> QR scanner</div>
+        <div class="global-div">
+          <p class="subtext" style="white-space: nowrap;">In partnership with:</p>
+          <div class="logo-wrapper">
+            <img src="logos/logo-fiserv.svg" class="logo" alt="Fiserv Logo">
+            <div class="vertical-line"></div>
+            <img src="logos/logo-accel-standard-registered.svg" class="logo" alt="Accel Logo">
+          </div>
         </div>
       </div>
-      <div class="device-wrap">
+      <div class="device-wrap" data-animate style="--delay: 0.2s;">
         <img src="images/paynow-PAX-A920Pro-v2-nbg.png" class="pax-device-large" loading="lazy"
           alt="PAX A920Pro with PayNow App" />
-      </div>
-    </div>
-  </section>
-
-  <!-- Partners -->
-  <section class="partners">
-    <div class="container">
-      <div class="logo-wrapper">
-        <img src="logos/logo-accel-standard-registered.svg" class="logo" alt="Accel Logo">
-        <img src="logos/logo-fiserv.svg" class="logo" alt="Fiserv Logo">
-        <img src="logos/logo-peak-credit-union.webp" class="logo" alt="Peak Credit Union Logo">
-        <img src="logos/logo-rogue-credit-union.svg" class="logo" alt="Rogue Credit Union Logo">
-        <img src="logos/logo-willamette-valley-bank.svg" class="logo" alt="Willamette Valley Bank Logo">
       </div>
     </div>
   </section>
@@ -108,56 +194,64 @@
   <!-- Benefits -->
   <section id="benefits">
     <div class="container grid grid-3" style="gap:1.25rem;">
-      <div class="card" style="background:#f8fafc;">
-        <h2 style="color: var(--blue);">No up front cost</h2>
-        <strong>Get a fee terminal when you sign up</strong>
-        <p style="color:var(--muted); margin-top:.4rem;">We'll set you up with a free terminal and waive all fees for the first 90 days.
+      <div class="card" data-animate style="background:rgba(51, 51, 51, 0.04); --delay: 0.1s;">
+        <h2>No up front cost</h2>
+        <p>Get a free PAX A920Pro terminal when you sign up!</p>
+      </div>
+      <div class="card" data-animate style="background:rgba(51, 51, 51, 0.04); --delay: 0.2s;">
+        <h2>More sales</h2>
+        <p>Less cash handling means larger tickets and more time for customers.
         </p>
       </div>
-      <div class="card" style="background:#f8fafc;">
-        <h2 style="color: var(--blue);">More sales</h2>
-        <strong>Grow your business</strong>
-        <p style="color:var(--muted); margin-top:.4rem;">Reach a larger market by accepting Accel® debit cards at checkout.
-        </p>
-      </div>
-      <div class="card" style="background:#f8fafc;">
-        <h2 style="color: var(--blue);">Less risk</h2>
-        <strong>Streamline your operations</strong>
-        <p style="color:var(--muted); margin-top:.4rem;">Spend less time handling cash and more time running your business.</p>
+      <div class="card" data-animate style="background:rgba(51, 51, 51, 0.04); --delay: 0.3s;">
+        <h2>Less risk</h2>
+        <p>Zero risk of shutdown or not getting paid. This is a debit network approved solution for cannabis dispensaries</p>
       </div>
     </div>
   </section>
 
   <!-- Features -->
-  <section id="features" style="background:#f8fafc; border-block:1px solid var(--line);">
+  <section id="features" style="background:rgba(51, 51, 51, 0.04); border-block:1px solid var(--line);">
     <div class="container">
-      <h2 class="section-title">Built for cannabis retail</h2>
-      <p class="section-sub">Purpose‑built rails and controls to help you run more card‑present sales while staying
-        aligned with network requirements.</p>
-      <div class="grid grid-3" style="margin-top:1rem; gap:1rem;">
-        <div class="card"><strong>Compliant debit</strong>
-          <p style="color:var(--muted); margin-top:.4rem;">Route transactions over approved debit networks with program
-            guardrails.</p>
-        </div>
-        <div class="card"><strong>Card‑present first</strong>
-          <p style="color:var(--muted); margin-top:.4rem;">Tap, dip, or swipe. Familiar checkout for budtenders and
-            customers.</p>
-        </div>
-        <div class="card"><strong>QR + membership</strong>
-          <p style="color:var(--muted); margin-top:.4rem;">Support store memberships and QR‑based check‑in or loyalty
-            flows.</p>
-        </div>
-        <div class="card"><strong>Tips handled</strong>
-          <p style="color:var(--muted); margin-top:.4rem;">Flexible tipping at checkout for better budtender take‑home.
+      <h2 class="section-title" data-animate>Built for cannabis retail</h2>
+      <p data-animate style="--delay: 0.1s;">Purpose built to give you an optimum store and checkout experience that have benefited retail, grocery and pharmacy stores worldwide.
+      </p>
+      <div class="grid grid-3" style="margin-top:3rem; gap:1rem;">
+        <div class="card" data-animate><strong>Cost</strong>
+          <p style="color:var(--muted); margin-top:.5rem;">Free for the dispensary, lower cost surcharge for the consumer.
           </p>
         </div>
-        <div class="card"><strong>No rounding</strong>
-          <p style="color:var(--muted); margin-top:.4rem;">Amounts post as the actual ticket total, not a rounded
+        <div class="card" data-animate><strong>Revenue Growth</strong>
+          <p style="color:var(--muted); margin-top:.5rem;">More sales, less friction, no checkout abandonment.
+          </p>
+        </div>
+        <div class="card" data-animate style="--delay: 0.1s;"><strong>Expand your acceptance</strong>
+          <p style="color:var(--muted); margin-top:.5rem;">We believe in choice, enable us as an additional option for your customers.
+          </p>
+        </div>
+        <div class="card" data-animate style="--delay: 0.2s;"><strong>Operational Efficiently</strong>
+          <p style="color:var(--muted); margin-top:.5rem;">We enable you to track and report critical operational and relationship information.
+          </p>
+        </div>
+        <div class="card" data-animate style="--delay: 0.5s;"><strong>Multi-Store Support</strong>
+          <p style="color:var(--muted); margin-top:.5rem;">Manage locations, users, and reporting from a single
+            dashboard.</p>
+        </div>
+        <div class="card" data-animate style="--delay: 0.5s;"><strong>Checkout</strong>
+          <p style="color:var(--muted); margin-top:.5rem;">Simple and easy, consumers can print or Text receipts.
+          </p>
+        </div>
+        <div class="card" data-animate style="--delay: 0.3s;"><strong>Tips handled</strong>
+          <p style="color:var(--muted); margin-top:.5rem;">Flexible tipping at checkout for better budtender take‑home.
+          </p>
+        </div>
+        <div class="card" data-animate style="--delay: 0.4s;"><strong>No rounding</strong>
+          <p style="color:var(--muted); margin-top:.5rem;">Amounts post as the actual ticket total, not a rounded
             figure.</p>
         </div>
-        <div class="card"><strong>Multi‑store ready</strong>
-          <p style="color:var(--muted); margin-top:.4rem;">Manage locations, users, and reporting from a single
-            dashboard.</p>
+        <div class="card" data-animate style="--delay: 0.4s;"><strong>Membership & Loyalty</strong>
+          <p style="color:var(--muted); margin-top:.5rem;">We support loyalty, membership and engagement  
+          </p>
         </div>
       </div>
     </div>
@@ -165,20 +259,10 @@
 
   <!-- Compliance -->
   <section id="compliance">
-    <div class="container card" style="padding:1.5rem;">
-      <div class="compliance">
-        <div>
-          <h3 class="section-title" style="margin-bottom:.25rem;">In partnership with Fiserv® | Accel®</h3>
-          <p style="color:var(--muted);">Accel is the only debit payment network designed for the cannabis industry.</p>
-        </div>
-        <div class="card" style="background:#f8fafc;">
-          <ul style="margin:0; padding-left:1.1rem; color:#334155;">
-            <li>Transparent pricing and clear settlement</li>
-            <li>Data and reporting built for retail ops</li>
-            <li>Simple installation and remote onboarding</li>
-          </ul>
-        </div>
-        <p class="note">* Business debit transactions are limited to non‑cannabis purchases.</p>
+    <div class="new-container">
+      <div class="new-container child" data-animate>
+        <h3 class="section-title">In partnership with Fiserv® | Accel®</h3>
+        <p>Fiserv’s Accel Network is the first-to-market debit payment network leveraging real-time debit rails, enabling consumers to make purchases at dispensaries in states where cannabis is legal.</p>
       </div>
     </div>
   </section>
@@ -198,32 +282,74 @@
 -->
 
   <!-- Contact -->
-  <section id="contact" style="background: var(--blue); color: white; border-block:1px solid var(--line);">
-    <div class="container grid grid-1" style="align-items:flex-start; gap:1.5rem;">
-      <div>
+  <section id="contact" style="background: var(--bg); color: black; border-block:1px solid var(--line);">
+    <div class="new-container">
+      <div class="new-container child" data-animate>
         <h3 class="section-title">Contact us</h3>
-        <p class="subheading">We’ll reach out the same business day.</p>
+        <p>We’ll reach out the same business day.</p>
+      </div>
+      <div data-animate style="--delay: 0.1s;">
+        <script src="https://js-na2.hsforms.net/forms/embed/244107169.js" defer></script>
+        <div class="hs-form-frame" data-region="na2" data-form-id="09e785ab-b392-494a-8c96-cbe3901a9960"
+          data-portal-id="244107169"></div>
+      </div>
+      <!--
         <div style="margin-top:3rem;">
-          <aside class="card" style="background-color: rgba(255, 255, 255, 0.1); color: #fff; margin-bottom: 12px; border: none;">
+          <aside class="card"
+            style="background-color: rgba(255, 255, 255, 0.1); color: #fff; margin-bottom: 12px; border: none;">
             <strong style="color: rgba(255, 255, 255, 0.8);">Email us:</strong>
             <a href="mailto:sales@corduro.com" id="emailLink" class="text-link">sales@corduro.com</a>
           </aside>
-          <aside class="card" style="background-color: rgba(255, 255, 255, 0.1); color: #fff; margin-bottom: 12px; border: none;">
+          <aside class="card"
+            style="background-color: rgba(255, 255, 255, 0.1); color: #fff; margin-bottom: 12px; border: none;">
             <strong style="color: rgba(255, 255, 255, 0.8);">Or call:</strong>
             <a href="tel:8882471886,4" class="text-link">(888) 247-1886 ext. 4</a>
           </aside>
         </div>
-      </div>
+        -->
+    </div>
     </div>
   </section>
 
   <!-- Footer -->
   <footer>
-    <div class="container" style="display:flex; gap:1rem; align-items:center; justify-content:center; flex-wrap:wrap; text-align: center;">
-      <span> Copyright © 2025 PayNow • Powered by Corduro® • All rights reserved.</span>
+    <div class="container"
+      style="display:flex; gap:1rem; align-items:center; justify-content:center; flex-wrap:wrap; text-align: center;">
+      <p> Copyright © 2025 PayNow • Powered by Corduro® • All rights reserved.</p>
     </div>
     </div>
   </footer>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const animatedElements = document.querySelectorAll('[data-animate]');
+      const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
+
+      if (prefersReducedMotion.matches) {
+        animatedElements.forEach((el) => el.classList.add('is-visible'));
+        return;
+      }
+
+      if (!('IntersectionObserver' in window)) {
+        animatedElements.forEach((el) => el.classList.add('is-visible'));
+        return;
+      }
+
+      const observer = new IntersectionObserver((entries, obs) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('is-visible');
+            obs.unobserve(entry.target);
+          }
+        });
+      }, {
+        threshold: 0.15,
+        rootMargin: '0px 0px -10% 0px'
+      });
+
+      animatedElements.forEach((el) => observer.observe(el));
+    });
+  </script>
 
 </body>
 
