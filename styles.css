@@ -6,7 +6,7 @@
     /* slate-900 */
     --muted: #33333380;
     /* slate-600 */
-    --line: #e2e8f0;
+    --line: #dedede;
     /* slate-200 */
     --card: #ffffff;
     --blue: #0080DD;
@@ -83,6 +83,10 @@ h2 {
         justify-content: center;
         margin-top: 28px;
         gap: .5rem;
+    }
+
+    .global-div.left {
+        justify-content: left;
     }
 }
 
@@ -208,7 +212,7 @@ a {
 }
 
 .btn.ghost:hover {
-    background: #f8fafc;
+    background: #f7f7f7;
 }
 
 .btn.ghost.nav {
@@ -425,7 +429,7 @@ nav {
         position: absolute;
         flex-direction: column;
         background: white;
-        top: 68px;
+        top: 73px;
         margin-left: 0;
         left: 0;
         width: 100%;

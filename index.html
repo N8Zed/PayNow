@@ -31,26 +31,6 @@
         </div>
         <button class="menu-btn" id="menuBtn">☰</button>
         <div class="nav-links" id="navLinks">
-          <div class="nav-item has-dropdown">
-            <button class="nav-link dropdown-trigger" type="button" aria-expanded="false" aria-controls="navDropdown"
-              data-dropdown-toggle>
-              Bank partners
-            </button>
-            <div class="dropdown-menu" id="navDropdown">
-              <div>
-                <a href="#compliance">Maine</a>
-                <a href="#features">Massachusetts</a>
-                <a href="#compliance">Minnesota</a>
-                <a href="#compliance">Montana</a>
-                <a href="#compliance">New York</a>
-                <a href="#compliance">Oklahoma</a>
-                <a href="#compliance">Oregon</a>
-                <a href="#compliance">Pennsylvania</a>
-                <a href="#compliance">Rhode Island</a>
-                <a href="#compliance">Washington</a>
-              </div>
-            </div>
-          </div>
           <a href="#features">Features</a>
           <a href="#compliance">Compliance</a>
           <a href="#contact">Contact</a>
@@ -90,19 +70,7 @@
     window.addEventListener('resize', setHeaderHeight, { passive: true });
 
     menuBtn.addEventListener('click', () => {
-      const isOpen = navLinks.classList.toggle('active');
-
-      if (!isOpen) {
-        const openDropdowns = navLinks.querySelectorAll('.has-dropdown.open');
-        openDropdowns.forEach((item) => {
-          item.classList.remove('open');
-          const trigger = item.querySelector('[data-dropdown-toggle]');
-          if (trigger) {
-            trigger.setAttribute('aria-expanded', 'false');
-          }
-        });
-      }
-
+      navLinks.classList.toggle('active');
       setHeaderHeight();
     });
 
@@ -112,55 +80,47 @@
         if (navLinks.classList.contains('active')) {
           navLinks.classList.remove('active');
         }
-        const openDropdowns = navLinks.querySelectorAll('.has-dropdown.open');
-        openDropdowns.forEach((item) => {
-          item.classList.remove('open');
-          const trigger = item.querySelector('[data-dropdown-toggle]');
-          if (trigger) {
-            trigger.setAttribute('aria-expanded', 'false');
-          }
-        });
       });
       setHeaderHeight();
     });
 
-    const dropdownTriggers = document.querySelectorAll('[data-dropdown-toggle]');
+    // Dropdown-specific behavior disabled intentionally.
+    // const dropdownTriggers = document.querySelectorAll('[data-dropdown-toggle]');
+    // dropdownTriggers.forEach((trigger) => {
+    //   const parent = trigger.closest('.has-dropdown');
+    //
+    //   trigger.addEventListener('click', (event) => {
+    //     const isDesktop = window.matchMedia('(min-width: 871px)').matches;
+    //
+    //     if (isDesktop) {
+    //       return;
+    //     }
+    //
+    //     const isOpen = parent.classList.toggle('open');
+    //     trigger.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+    //     event.stopPropagation();
+    //     setHeaderHeight();
+    //   });
+    // });
 
-    dropdownTriggers.forEach((trigger) => {
-      const parent = trigger.closest('.has-dropdown');
-
-      trigger.addEventListener('click', (event) => {
-        const isDesktop = window.matchMedia('(min-width: 871px)').matches;
-
-        if (isDesktop) {
-          return;
-        }
-
-        const isOpen = parent.classList.toggle('open');
-        trigger.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
-        event.stopPropagation();
-        setHeaderHeight();
-      });
-    });
-
-    document.addEventListener('click', (event) => {
-      const isDesktop = window.matchMedia('(min-width: 871px)').matches;
-
-      if (isDesktop) {
-        return;
-      }
-
-      if (!navLinks.contains(event.target)) {
-        dropdownTriggers.forEach((trigger) => {
-          const parent = trigger.closest('.has-dropdown');
-          if (parent) {
-            parent.classList.remove('open');
-            trigger.setAttribute('aria-expanded', 'false');
-          }
-        });
-        setHeaderHeight();
-      }
-    });
+    // document.addEventListener('click', (event) => {
+    //   const isDesktop = window.matchMedia('(min-width: 871px)').matches;
+    //
+    //   if (isDesktop) {
+    //     return;
+    //   }
+    //
+    //   if (!navLinks.contains(event.target)) {
+    //     dropdownTriggers.forEach((trigger) => {
+    //       const parent = trigger.closest('.has-dropdown');
+    //       if (parent) {
+    //         parent.classList.remove('open');
+    //         trigger.setAttribute('aria-expanded', 'false');
+    //       }
+    //     });
+    //     setHeaderHeight();
+    //   }
+    // });
   </script>
 
   <!-- Hero -->
@@ -180,7 +140,7 @@
           <div class="logo-wrapper">
             <img src="logos/logo-fiserv.svg" class="logo" alt="Fiserv Logo">
             <div class="vertical-line"></div>
-            <img src="logos/logo-accel-standard-registered.svg" class="logo" alt="Accel Logo">
+            <img src="logos/logo-accel.svg" class="logo" alt="Accel Logo">
           </div>
         </div>
       </div>
@@ -213,7 +173,7 @@
   <!-- Features -->
   <section id="features" style="background:rgba(51, 51, 51, 0.04); border-block:1px solid var(--line);">
     <div class="container">
-      <h2 class="section-title" data-animate>Built for cannabis retail</h2>
+      <h2 data-animate>Built for cannabis retail</h2>
       <p data-animate style="--delay: 0.1s;">Purpose built to give you an optimum store and checkout experience that have benefited retail, grocery and pharmacy stores worldwide.
       </p>
       <div class="grid grid-3" style="margin-top:3rem; gap:1rem;">
@@ -261,7 +221,14 @@
   <section id="compliance">
     <div class="new-container">
       <div class="new-container child" data-animate>
-        <h3 class="section-title">In partnership with Fiserv® | Accel®</h3>
+        <div class="global-div left">
+          <h3 class="section-title">In partnership with:</h3>
+          <div class="logo-wrapper">
+            <img src="logos/logo-fiserv.svg" class="logo" alt="Fiserv Logo">
+            <div class="vertical-line"></div>
+            <img src="logos/logo-accel.svg" class="logo" alt="Accel Logo">
+          </div>
+        </div>
         <p>Fiserv’s Accel Network is the first-to-market debit payment network leveraging real-time debit rails, enabling consumers to make purchases at dispensaries in states where cannabis is legal.</p>
       </div>
     </div>
@@ -283,11 +250,7 @@
 
   <!-- Contact -->
   <section id="contact" style="background: var(--bg); color: black; border-block:1px solid var(--line);">
-    <div class="new-container">
-      <div class="new-container child" data-animate>
-        <h3 class="section-title">Contact us</h3>
-        <p>We’ll reach out the same business day.</p>
-      </div>
+    <div class="new-container" data-animate>
       <div data-animate style="--delay: 0.1s;">
         <script src="https://js-na2.hsforms.net/forms/embed/244107169.js" defer></script>
         <div class="hs-form-frame" data-region="na2" data-form-id="09e785ab-b392-494a-8c96-cbe3901a9960"
