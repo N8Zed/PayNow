@@ -83,44 +83,6 @@
       });
       setHeaderHeight();
     });
-
-    // Dropdown-specific behavior disabled intentionally.
-    // const dropdownTriggers = document.querySelectorAll('[data-dropdown-toggle]');
-    // dropdownTriggers.forEach((trigger) => {
-    //   const parent = trigger.closest('.has-dropdown');
-    //
-    //   trigger.addEventListener('click', (event) => {
-    //     const isDesktop = window.matchMedia('(min-width: 871px)').matches;
-    //
-    //     if (isDesktop) {
-    //       return;
-    //     }
-    //
-    //     const isOpen = parent.classList.toggle('open');
-    //     trigger.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
-    //     event.stopPropagation();
-    //     setHeaderHeight();
-    //   });
-    // });
-
-    // document.addEventListener('click', (event) => {
-    //   const isDesktop = window.matchMedia('(min-width: 871px)').matches;
-    //
-    //   if (isDesktop) {
-    //     return;
-    //   }
-    //
-    //   if (!navLinks.contains(event.target)) {
-    //     dropdownTriggers.forEach((trigger) => {
-    //       const parent = trigger.closest('.has-dropdown');
-    //       if (parent) {
-    //         parent.classList.remove('open');
-    //         trigger.setAttribute('aria-expanded', 'false');
-    //       }
-    //     });
-    //     setHeaderHeight();
-    //   }
-    // });
   </script>
 
   <!-- Hero -->
@@ -234,20 +196,6 @@
     </div>
   </section>
 
-  <!-- CTA strip
-  <section class="strip">
-    <div class="container"
-      style="display:flex; gap:1rem; align-items:center; justify-content:space-between; flex-wrap:wrap;">
-      <div>
-        <div style="font-weight:700; font-size:18px;">Ready to check out faster?</div>
-        <div style="opacity:.9;">Get PayNow running in days, not months.</div>
-      </div>
-      <a class="btn" href="#contact"
-        style="background: rgba(255,255,255,.12); color:white; border-color: rgba(255,255,255,.25);">Talk to sales →</a>
-    </div>
-  </section>
--->
-
   <!-- Contact -->
   <section id="contact" style="background: var(--bg); color: black; border-block:1px solid var(--line);">
     <div class="new-container" data-animate>
@@ -256,20 +204,6 @@
         <div class="hs-form-frame" data-region="na2" data-form-id="09e785ab-b392-494a-8c96-cbe3901a9960"
           data-portal-id="244107169"></div>
       </div>
-      <!--
-        <div style="margin-top:3rem;">
-          <aside class="card"
-            style="background-color: rgba(255, 255, 255, 0.1); color: #fff; margin-bottom: 12px; border: none;">
-            <strong style="color: rgba(255, 255, 255, 0.8);">Email us:</strong>
-            <a href="mailto:sales@corduro.com" id="emailLink" class="text-link">sales@corduro.com</a>
-          </aside>
-          <aside class="card"
-            style="background-color: rgba(255, 255, 255, 0.1); color: #fff; margin-bottom: 12px; border: none;">
-            <strong style="color: rgba(255, 255, 255, 0.8);">Or call:</strong>
-            <a href="tel:8882471886,4" class="text-link">(888) 247-1886 ext. 4</a>
-          </aside>
-        </div>
-        -->
     </div>
     </div>
   </section>
