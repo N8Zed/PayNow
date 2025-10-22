@@ -33,6 +33,7 @@
         <div class="nav-links" id="navLinks">
           <a href="#features">Features</a>
           <a href="#compliance">Compliance</a>
+          <a href="#faq">FAQ</a>
           <a href="#contact">Contact</a>
         </div>
         <div class="nav-actions">
@@ -79,10 +80,11 @@
       link.addEventListener('click', () => {
         if (navLinks.classList.contains('active')) {
           navLinks.classList.remove('active');
+          setHeaderHeight();
         }
       });
-      setHeaderHeight();
     });
+    setHeaderHeight();
   </script>
 
   <!-- Hero -->
@@ -197,7 +199,7 @@
   </section>
 
   <!-- FAQ -->
-  <section id="faqs" class="faq">
+  <section id="faq" class="faq">
     <div class="container" data-animate>
       <h2>Frequently asked questions</h2>
 

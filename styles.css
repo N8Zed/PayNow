@@ -23,7 +23,7 @@
 
 html {
     box-sizing: border-box;
-    scroll-padding-top: 89px;
+    scroll-padding-top: var(--header-height, 89px);
     scroll-behavior: smooth;
     /* or match your header height */
 }
