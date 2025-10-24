@@ -778,7 +778,6 @@ footer {
 
 .faq-item.is-open {
     border-color: var(--blue);
-    box-shadow: var(--shadow);
 }
 
 .faq-question {
@@ -810,5 +809,4 @@ footer {
 
 .faq-answer {
     padding: 0 1.5rem 1.25rem;
-    color: var(--muted);
 }
